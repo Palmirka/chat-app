@@ -1,1 +1,27 @@
+<MessageBox@Label>:
+    text: "hi there"
 
+MainBoxLayout:
+    ws: False
+    orientation: "vertical"
+    BoxLayout:
+        ws: False
+        id: texts
+        Button:
+            id: join
+            text: "join"
+            on_release:
+                root.start_websocket(texts)
+                texts.remove_widget(self)
+    BoxLayout:
+        ws: False
+        TextInput:
+            id: message
+            size_hint: .1, .4
+            hint_text: "Type your message..."
+        Button:
+            text: "send"
+            size_hint: .1, .4
+            on_release:
+                root.data = message.text
+                message.text = ''
